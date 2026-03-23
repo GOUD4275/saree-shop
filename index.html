@@ -5,11 +5,13 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <h1>🛍️ Krupa Sarees 🛍️</h1>
   <p>అత్యుత్తమ క్వాలిటీ చీరలు తక్కువ ధరలో</p>
 </header>
 
+<!-- NAVBAR -->
 <nav>
   <a href="index.html">Home</a>
   <a href="products.html">Products</a>
@@ -24,24 +26,49 @@
   <p>🌸 కాటన్ చీరలు – ₹250/-</p>
   <p>✨ లినెన్ కాటన్ చీరలు – ₹250/-</p>
 
-  <img src="images/Saree1.jpeg" style="width:250px; border-radius:10px;">
+  <img src="images/Saree1.jpeg" class="home-img">
+
+  <br><br>
+
+  <a href="products.html">
+    <button>🛍️ అన్ని చీరలు చూడండి</button>
+  </a>
 </section>
 
-<!-- CATEGORY CLICK SECTION -->
-<section style="background:white; padding:20px; margin:20px; border-radius:10px;">
+<!-- CATEGORY CARDS (NEW 🔥) -->
+<section style="padding:20px;">
   <h2>మా చీరల రకాలులు (Click చేయండి)</h2>
 
-  <a href="products.html?category=dola">
-    <button>🔥 డోలా చీరలు</button>
-  </a>
+  <div class="products-container">
 
-  <a href="products.html?category=cotton">
-    <button>🌸 కాటన్ చీరలు</button>
-  </a>
+    <!-- DOLA -->
+    <div class="product">
+      <img src="images/Saree1.jpeg">
+      <h3>🔥 డోలా చీరలు</h3>
+      <a href="products.html?category=dola">
+        <button>చూడండి</button>
+      </a>
+    </div>
 
-  <a href="products.html?category=linen">
-    <button>✨ లినెన్ కాటన్ చీరలు</button>
-  </a>
+    <!-- COTTON -->
+    <div class="product">
+      <img src="images/Cotton1.jpeg">
+      <h3>🌸 కాటన్ చీరలు</h3>
+      <a href="products.html?category=cotton">
+        <button>చూడండి</button>
+      </a>
+    </div>
+
+    <!-- LINEN -->
+    <div class="product">
+      <img src="images/Linen1.jpeg">
+      <h3>✨ లినెన్ చీరలు</h3>
+      <a href="products.html?category=linen">
+        <button>చూడండి</button>
+      </a>
+    </div>
+
+  </div>
 </section>
 
 <!-- CONTACT -->
@@ -54,6 +81,7 @@
   </a>
 </section>
 
+<!-- FOOTER -->
 <footer style="background:purple; color:white; padding:10px;">
   <p>© 2026 Krupa Sarees</p>
 </footer>
