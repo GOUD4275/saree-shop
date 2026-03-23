@@ -6,6 +6,18 @@ function addToCart(name, price) {
   alert("Added to cart");
 }
 
+
+// URL category filter
+window.onload = function () {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  if (category) {
+    filterProducts(category);
+  }
+};
+
+
 function loadCart() {
   let cartDiv = document.getElementById("cart-items");
   let total = 0;
