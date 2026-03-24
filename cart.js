@@ -55,18 +55,32 @@ function loadCart() {
   document.getElementById("total").innerText = "Total: ₹" + total;
 }
 
-// CHECKOUT
+// ✅ FINAL CHECKOUT (WITH CUSTOMER DETAILS)
 function checkout() {
+
   if (cart.length === 0) {
     alert("Cart ఖాళీగా ఉంది");
     return;
   }
 
-  let message = "Order Details:\n";
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+
+  if (!name || !phone || !address) {
+    alert("Details fill చేయండి");
+    return;
+  }
+
+  let message = "🛍️ Order Details:\n\n";
 
   cart.forEach(item => {
     message += item.name + " - ₹" + item.price + "\n";
   });
+
+  message += "\n👤 Name: " + name;
+  message += "\n📞 Phone: " + phone;
+  message += "\n🏠 Address: " + address;
 
   window.open("https://wa.me/919959008593?text=" + encodeURIComponent(message));
 }
