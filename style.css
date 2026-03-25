@@ -3,11 +3,36 @@ body {
   margin: 0;
   background: #f5f5f5;
   text-align: center;
+  font-size: 18px; /* 🔥 FIX: text bigger */
 }
 
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  background: white;
+}
+
+.logo {
+  width: 80px;
+}
+
+/* HEADINGS */
 h1 {
   color: purple;
-  margin-top: 20px;
+  margin-top: 10px;
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 16px;
 }
 
 /* NAVBAR */
@@ -32,6 +57,7 @@ nav a {
   padding: 20px;
 }
 
+/* POPUP */
 .popup {
   display: none;
   position: fixed;
@@ -58,11 +84,12 @@ nav a {
   transition: transform 0.2s;
 }
 
-/* 🔥 HOVER EFFECT */
+/* HOVER */
 .product:hover {
   transform: scale(1.03);
 }
 
+/* CART BOX */
 .cart-box {
   background: white;
   padding: 10px;
@@ -71,17 +98,18 @@ nav a {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* IMAGE FIX (BEST PART 🔥) */
+/* IMAGE */
 .product img {
   width: 100%;
-  height: auto;
-  /*object-fit: cover;*/
+  height: 220px; /* 🔥 FIX: same size */
+  object-fit: cover;
   border-radius: 10px;
 }
 
 /* TEXT */
 .product h3 {
   margin: 10px 0 5px;
+  font-size: 18px;
 }
 
 .product p {
@@ -104,9 +132,53 @@ button:hover {
   background: darkmagenta;
 }
 
-/* MOBILE FIX */
-@media (max-width: 600px) {
+/* ================= MOBILE RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .logo {
+    width: 60px;
+  }
+
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .product img {
     height: 180px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+  .products-container {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px;
   }
 }
