@@ -1,6 +1,22 @@
 // ================= CART DATA =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+/* ❤️ WISHLIST START */
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function addToWishlist(name) {
+  if (!wishlist.includes(name)) {
+    wishlist.push(name);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    alert(name + " wishlist lo add ayindi ❤️");
+  } else {
+    alert("Already wishlist lo undi");
+  }
+}
+/* ❤️ WISHLIST END */
+
 // FIX OLD DATA (important)
 cart = cart.map(item => ({
   ...item,
