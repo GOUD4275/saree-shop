@@ -9,15 +9,18 @@ body {
 /* HEADER */
 .header {
   display: flex;
-  align-items: center;
+  flex-direction: column;   /* 🔥 stack items */
+  align-items: center;      /* center horizontally */
   justify-content: center;
-  gap: 15px;
-  padding: 10px;
+  padding: 20px;
   background: white;
 }
 
+/* LOGO FIX */
 .logo {
-  width: 80px;
+  width: 130px;   /* 🔥 increase size */
+  height: auto;
+  margin-bottom: 10px;
 }
 
 /* HEADINGS */
