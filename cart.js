@@ -1,6 +1,13 @@
+// ================= CART DATA =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// ADD TO CART
+// FIX OLD DATA (important)
+cart = cart.map(item => ({
+  ...item,
+  qty: item.qty || 1
+}));
+
+// ================= ADD TO CART =================
 function addToCart(name, price) {
   let existing = cart.find(item => item.name === name);
 
@@ -14,7 +21,37 @@ function addToCart(name, price) {
   alert(name + " cart లో add అయింది");
 }
 
-// LOAD CART
+// ================= FILTER PRODUCTS =================
+function filterProducts(category) {
+  let products = document.querySelectorAll(".product");
+
+  products.forEach(p => {
+    if (category === "all") {
+      p.style.display = "block";
+    } 
+    else if (p.classList.contains(category)) {
+      p.style.display = "block";
+    } 
+    else {
+      p.style.display = "none";
+    }
+  });
+}
+
+// ================= CATEGORY LOAD =================
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  let category = params.get("category");
+
+  console.log("Category:", category);
+
+  if (category) {
+    category = category.trim().toLowerCase();
+    filterProducts(category);
+  }
+});
+
+// ================= LOAD CART =================
 function loadCart() {
   let cartDiv = document.getElementById("cart-items");
   let total = 0;
@@ -51,13 +88,12 @@ function loadCart() {
   document.getElementById("total").innerText = "Total: ₹" + total;
 }
 
-// INCREASE QTY
+// ================= QTY CONTROLS =================
 function increaseQty(index) {
   cart[index].qty += 1;
   saveAndReload();
 }
 
-// DECREASE QTY
 function decreaseQty(index) {
   if (cart[index].qty > 1) {
     cart[index].qty -= 1;
@@ -65,25 +101,25 @@ function decreaseQty(index) {
   saveAndReload();
 }
 
-// REMOVE ITEM
+// ================= REMOVE =================
 function removeItem(index) {
   cart.splice(index, 1);
   saveAndReload();
 }
 
-// CLEAR CART
+// ================= CLEAR CART =================
 function clearCart() {
   cart = [];
   saveAndReload();
 }
 
-// SAVE + RELOAD
+// ================= SAVE + RELOAD =================
 function saveAndReload() {
   localStorage.setItem("cart", JSON.stringify(cart));
   loadCart();
 }
 
-// CHECKOUT
+// ================= CHECKOUT =================
 function checkout() {
 
   if (cart.length === 0) {
@@ -101,7 +137,6 @@ function checkout() {
   }
 
   let message = "🛍️ Order Details:\n\n";
-
   let total = 0;
 
   cart.forEach(item => {
@@ -118,7 +153,7 @@ function checkout() {
   window.open("https://wa.me/919959008593?text=" + encodeURIComponent(message));
 }
 
-// AUTO LOAD
+// ================= AUTO LOAD CART =================
 if (document.getElementById("cart-items")) {
   loadCart();
 }
