@@ -43,7 +43,13 @@ function searchProducts() {
   products.forEach(p => {
     let text = p.innerText.toLowerCase();
 
-    if (text.includes(input)) {
+    // 🔥 Telugu + English keywords
+    if (
+      text.includes(input) ||
+      (input.includes("dola") && text.includes("డోలా")) ||
+      (input.includes("cotton") && text.includes("కాటన్")) ||
+      (input.includes("linen") && text.includes("లినెన్"))
+    ) {
       p.style.display = "block";
     } else {
       p.style.display = "none";
