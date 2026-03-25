@@ -1,8 +1,6 @@
 // ================= CART DATA =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 /* ❤️ WISHLIST START */
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
