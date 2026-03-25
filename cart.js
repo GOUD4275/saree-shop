@@ -15,7 +15,7 @@ function addToWishlist(name) {
 }
 /* ❤️ WISHLIST END */
 
-// FIX OLD DATA (important)
+// ================= FIX OLD DATA =================
 cart = cart.map(item => ({
   ...item,
   qty: item.qty || 1
@@ -33,6 +33,22 @@ function addToCart(name, price) {
 
   localStorage.setItem("cart", JSON.stringify(cart));
   alert(name + " cart లో add అయింది");
+}
+
+// ================= SEARCH PRODUCTS =================
+function searchProducts() {
+  let input = document.getElementById("searchBox").value.toLowerCase();
+  let products = document.querySelectorAll(".product");
+
+  products.forEach(p => {
+    let text = p.innerText.toLowerCase();
+
+    if (text.includes(input)) {
+      p.style.display = "block";
+    } else {
+      p.style.display = "none";
+    }
+  });
 }
 
 // ================= FILTER PRODUCTS =================
@@ -56,8 +72,6 @@ function filterProducts(category) {
 document.addEventListener("DOMContentLoaded", function () {
   const params = new URLSearchParams(window.location.search);
   let category = params.get("category");
-
-  console.log("Category:", category);
 
   if (category) {
     category = category.trim().toLowerCase();
