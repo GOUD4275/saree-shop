@@ -190,4 +190,26 @@ function checkout() {
 // ================= AUTO LOAD CART =================
 if (document.getElementById("cart-items")) {
   loadCart();
+
+function payNow() {
+
+  if (cart.length === 0) {
+    alert("Cart ఖాళీగా ఉంది");
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+
+  let upiId = "gowd20092@ibl";  // 🔥 your UPI ID here
+  let name = "Krupa Sarees";
+
+  let url = `upi://pay?pa=${upiId}&pn=${name}&am=${total}&cu=INR`;
+
+  window.location.href = url;
+}
+  
 }
