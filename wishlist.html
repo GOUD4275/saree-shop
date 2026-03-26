@@ -13,6 +13,8 @@ function loadWishlist() {
 wishlist.forEach((item, index) => {
   div.innerHTML += `
     <div class="cart-box">
+      <img src="images/${item.replace(/ /g,'')}.jpeg" width="100">
+        
       <p>❤️ ${item}</p>
 
       <button onclick="moveToCart('${item}')">🛒 Add to Cart</button>

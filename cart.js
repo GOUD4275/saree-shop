@@ -13,6 +13,18 @@ function addToWishlist(name) {
     alert("Already wishlist lo undi");
   }
 }
+
+function updateWishlistCount() {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  let el = document.getElementById("wish-count");
+
+  if (el) {
+    el.innerText = wishlist.length;
+  }
+}
+
+updateWishlistCount();
+
 /* ❤️ WISHLIST END */
 
 // ================= FIX OLD DATA =================
