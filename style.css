@@ -58,6 +58,21 @@ nav a:hover {
   transform: scale(1.1);
 }
 
+/* NAVBAR FIX */
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;   /* 🔥 important */
+}
+
+nav a {
+  display: flex;
+  flex-direction: column; /* icon + text center */
+  align-items: center;
+  font-size: 14px;
+}
+
 /* PRODUCTS GRID */
 .products-container {
   display: grid;
@@ -183,5 +198,11 @@ button:hover {
   button {
     font-size: 12px;
     padding: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav a {
+    font-size: 12px;
   }
 }
