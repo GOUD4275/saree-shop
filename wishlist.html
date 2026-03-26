@@ -48,3 +48,41 @@ loadWishlist();
 <div id="wishlist-items"></div>
 
 </body>
+
+
+<script>
+function loadWishlist() {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  let div = document.getElementById("wishlist-items");
+
+  div.innerHTML = "";
+
+  if (wishlist.length === 0) {
+    div.innerHTML = "<p>Wishlist ఖాళీగా ఉంది</p>";
+    return;
+  }
+
+  wishlist.forEach((item, index) => {
+    div.innerHTML += `
+      <div class="cart-box">
+        <p>❤️ ${item}</p>
+        <button onclick="removeWishlist(${index})">❌ Remove</button>
+      </div>
+    `;
+  });
+}
+
+function removeWishlist(index) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  wishlist.splice(index, 1);
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  loadWishlist();
+}
+
+function clearWishlist() {
+  localStorage.removeItem("wishlist");
+  loadWishlist();
+}
+
+loadWishlist();
+</script>
