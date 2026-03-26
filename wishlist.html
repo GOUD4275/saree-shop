@@ -10,14 +10,16 @@ function loadWishlist() {
     return;
   }
 
-  wishlist.forEach((item, index) => {
-    div.innerHTML += `
-      <div class="cart-box">
-        <p>❤️ ${item}</p>
-        <button onclick="removeWishlist(${index})">❌ Remove</button>
-      </div>
-    `;
-  });
+wishlist.forEach((item, index) => {
+  div.innerHTML += `
+    <div class="cart-box">
+      <p>❤️ ${item}</p>
+
+      <button onclick="moveToCart('${item}')">🛒 Add to Cart</button>
+      <button onclick="removeWishlist(${index})">❌ Remove</button>
+    </div>
+  `;
+});
 }
 
 // ❌ REMOVE SINGLE ITEM
