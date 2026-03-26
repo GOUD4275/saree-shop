@@ -1,34 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Wishlist</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<h1>❤️ మీ Wishlist</h1>
-
-<div id="wishlist-items"></div>
-
-<script src="cart.js"></script>
-
 <script>
 function loadWishlist() {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   let div = document.getElementById("wishlist-items");
+
+  div.innerHTML = "";
 
   if (wishlist.length === 0) {
     div.innerHTML = "<p>Wishlist ఖాళీగా ఉంది</p>";
     return;
   }
 
-  wishlist.forEach(item => {
-    div.innerHTML += `<p>❤️ ${item}</p>`;
+  wishlist.forEach((item, index) => {
+    div.innerHTML += `
+      <div class="cart-box">
+        <p>❤️ ${item}</p>
+        <button onclick="removeWishlist(${index})">❌ Remove</button>
+      </div>
+    `;
   });
 }
 
+// ❌ REMOVE SINGLE ITEM
+function removeWishlist(index) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  wishlist.splice(index, 1);
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  loadWishlist();
+}
+
+// 🔄 CLEAR ALL
+function clearWishlist() {
+  localStorage.removeItem("wishlist");
+  loadWishlist();
+}
+
+
+// AUTO LOAD
 loadWishlist();
 </script>
 
+<body>
+
+<h1>❤️ మీ Wishlist</h1>
+
+<button onclick="clearWishlist()">🔄 Clear Wishlist</button>
+
+<div id="wishlist-items"></div>
+
 </body>
-</html>
