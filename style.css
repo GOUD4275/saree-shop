@@ -58,6 +58,10 @@ nav a:hover {
   transform: scale(1.1);
 }
 
+nav a {
+  white-space: nowrap;   /* 🔥 FIX: prevent line break */
+}
+
 /* NAVBAR FIX */
 nav {
   display: flex;
