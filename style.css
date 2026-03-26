@@ -210,3 +210,19 @@ button:hover {
     font-size: 12px;
   }
 }
+
+/* BADGE FIX */
+.badge {
+  background: red;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 50px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+/* NAV FIX */
+nav a {
+  flex-direction: row;   /* 🔥 IMPORTANT */
+  gap: 5px;
+}
