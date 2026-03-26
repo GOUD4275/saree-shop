@@ -50,6 +50,12 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   color: purple;
+  font-size: 18px;
+}
+
+nav a:hover {
+  color: darkmagenta;
+  transform: scale(1.1);
 }
 
 /* PRODUCTS GRID */
