@@ -1,142 +1,59 @@
-// ================= CART DATA =================
+// ================= DATA =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-/* ❤️ WISHLIST START */
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-function addToWishlist(name) {
-  if (!wishlist.includes(name)) {
-    wishlist.push(name);
+// ================= ADD TO CART =================
+function addToCart(name, price, img) {
+  let existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name, price, img, qty: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  alert(name + " cart లో add అయింది");
+}
+
+// ================= WISHLIST =================
+function addToWishlist(name, img) {
+  let exists = wishlist.find(item => item.name === name);
+
+  if (!exists) {
+    wishlist.push({ name, img });
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    updateWishlistCount();
     alert(name + " wishlist lo add ayindi ❤️");
   } else {
     alert("Already wishlist lo undi");
   }
 }
 
-function updateWishlistCount() {
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  let el = document.getElementById("wish-count");
-
-  if (el) {
-    el.innerText = wishlist.length;
-  }
-}
-
-updateWishlistCount();
-
-/* ❤️ WISHLIST END */
-
-// ================= FIX OLD DATA =================
-cart = cart.map(item => ({
-  ...item,
-  qty: item.qty || 1
-}));
-
-// ================= ADD TO CART =================
-function addToCart(name, price, image) {
-  let existing = cart.find(item => item.name === name);
-
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ name, price, image, qty: 1 }); // ✅ image added
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(name + " cart లో add అయింది");
-
-  updateCartCount(); // 🔥 update count
-}
-
-// ================= SEARCH PRODUCTS =================
-function searchProducts() {
-  let input = document.getElementById("searchBox").value.toLowerCase();
-  let products = document.querySelectorAll(".product");
-
-  products.forEach(p => {
-    let text = p.innerText.toLowerCase();
-
-    // 🔥 Telugu + English keywords
-    if (
-      text.includes(input) ||
-      (input.includes("dola") && text.includes("డోలా")) ||
-      (input.includes("cotton") && text.includes("కాటన్")) ||
-      (input.includes("linen") && text.includes("లినెన్"))
-    ) {
-      p.style.display = "block";
-    } else {
-      p.style.display = "none";
-    }
-  });
-}
-
-// ================= FILTER PRODUCTS =================
-function filterProducts(category) {
-  let products = document.querySelectorAll(".product");
-
-  products.forEach(p => {
-    if (category === "all") {
-      p.style.display = "block";
-    } 
-    else if (p.classList.contains(category)) {
-      p.style.display = "block";
-    } 
-    else {
-      p.style.display = "none";
-    }
-  });
-}
-
-// ================= CATEGORY LOAD =================
-document.addEventListener("DOMContentLoaded", function () {
-  const params = new URLSearchParams(window.location.search);
-  let category = params.get("category");
-
-  if (category) {
-    category = category.trim().toLowerCase();
-    filterProducts(category);
-  }
-});
-
 // ================= LOAD CART =================
 function loadCart() {
-  let cartDiv = document.getElementById("cart-items");
+  let div = document.getElementById("cart-items");
   let total = 0;
 
-  if (!cartDiv) return;
+  if (!div) return;
 
-  cartDiv.innerHTML = "";
+  div.innerHTML = "";
 
   if (cart.length === 0) {
-    cartDiv.innerHTML = "<p>మీ కార్ట్ ఖాళీగా ఉంది</p>";
-    document.getElementById("total").innerText = "";
+    div.innerHTML = "<p>Cart ఖాళీగా ఉంది</p>";
     return;
   }
-  cartDiv.innerHTML += `
-  <div class="cart-box">
-    <img src="${item.image}" width="100">
-
-    <p>${item.name} - ₹${item.price}</p>
-
-    <button onclick="decreaseQty(${index})">➖</button>
-    <span>${item.qty}</span>
-    <button onclick="increaseQty(${index})">➕</button>
-
-    <p>Subtotal: ₹${itemTotal}</p>
-
-    <button onclick="removeItem(${index})">❌ Remove</button>
-  </div>
-`;
-
 
   cart.forEach((item, index) => {
     let itemTotal = item.price * item.qty;
     total += itemTotal;
 
-    cartDiv.innerHTML += `
+    div.innerHTML += `
       <div class="cart-box">
-        <p>${item.name} - ₹${item.price}</p>
+        <img src="${item.img}" width="100">
+        <p>${item.name}</p>
+        <p>₹${item.price}</p>
 
         <button onclick="decreaseQty(${index})">➖</button>
         <span>${item.qty}</span>
@@ -152,40 +69,49 @@ function loadCart() {
   document.getElementById("total").innerText = "Total: ₹" + total;
 }
 
-// ================= QTY CONTROLS =================
-function increaseQty(index) {
-  cart[index].qty += 1;
-  saveAndReload();
+// ================= QTY =================
+function increaseQty(i) {
+  cart[i].qty++;
+  saveReload();
 }
 
-function decreaseQty(index) {
-  if (cart[index].qty > 1) {
-    cart[index].qty -= 1;
-  }
-  saveAndReload();
+function decreaseQty(i) {
+  if (cart[i].qty > 1) cart[i].qty--;
+  saveReload();
 }
 
 // ================= REMOVE =================
-function removeItem(index) {
-  cart.splice(index, 1);
-  saveAndReload();
+function removeItem(i) {
+  cart.splice(i, 1);
+  saveReload();
 }
 
-// ================= CLEAR CART =================
+// ================= CLEAR =================
 function clearCart() {
   cart = [];
-  saveAndReload();
+  saveReload();
 }
 
-// ================= SAVE + RELOAD =================
-function saveAndReload() {
+// ================= SAVE =================
+function saveReload() {
   localStorage.setItem("cart", JSON.stringify(cart));
   loadCart();
+  updateCartCount();
+}
+
+// ================= COUNT =================
+function updateCartCount() {
+  let el = document.getElementById("cart-count");
+  if (el) el.innerText = cart.length;
+}
+
+function updateWishlistCount() {
+  let el = document.getElementById("wish-count");
+  if (el) el.innerText = wishlist.length;
 }
 
 // ================= CHECKOUT =================
 function checkout() {
-
   if (cart.length === 0) {
     alert("Cart ఖాళీగా ఉంది");
     return;
@@ -200,46 +126,27 @@ function checkout() {
     return;
   }
 
-  let message = "🛍️ Order Details:\n\n";
+  let msg = "🛍️ Order Details:\n\n";
   let total = 0;
 
   cart.forEach(item => {
-    let itemTotal = item.price * item.qty;
-    total += itemTotal;
-    message += `${item.name} x${item.qty} = ₹${itemTotal}\n`;
+    let t = item.price * item.qty;
+    total += t;
+    msg += `${item.name} x${item.qty} = ₹${t}\n`;
   });
 
-  message += "\n💰 Total: ₹" + total;
-  message += "\n\n👤 Name: " + name;
-  message += "\n📞 Phone: " + phone;
-  message += "\n🏠 Address: " + address;
+  msg += "\n💰 Total: ₹" + total;
+  msg += "\n👤 " + name;
+  msg += "\n📞 " + phone;
+  msg += "\n🏠 " + address;
 
-  window.open("https://wa.me/919959008593?text=" + encodeURIComponent(message));
+  window.open("https://wa.me/919959008593?text=" + encodeURIComponent(msg));
 }
 
-// ================= AUTO LOAD CART =================
+// ================= INIT =================
+updateCartCount();
+updateWishlistCount();
+
 if (document.getElementById("cart-items")) {
   loadCart();
-
-function payNow() {
-
-  if (cart.length === 0) {
-    alert("Cart ఖాళీగా ఉంది");
-    return;
-  }
-
-  let total = 0;
-
-  cart.forEach(item => {
-    total += item.price * item.qty;
-  });
-
-  let upiId = "gowd20092@ibl";  // 🔥 your UPI ID here
-  let name = "Krupa Sarees";
-
-  let url = `upi://pay?pa=${upiId}&pn=${name}&am=${total}&cu=INR`;
-
-  window.location.href = url;
-}
-  
 }

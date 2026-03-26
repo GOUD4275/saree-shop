@@ -1,48 +1,9 @@
-<script>
-function loadWishlist() {
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  let div = document.getElementById("wishlist-items");
-
-  div.innerHTML = "";
-
-  if (wishlist.length === 0) {
-    div.innerHTML = "<p>Wishlist ఖాళీగా ఉంది</p>";
-    return;
-  }
-
-wishlist.forEach((item, index) => {
-  div.innerHTML += `
-    <div class="cart-box">
-      <img src="images/${item.replace(/ /g,'')}.jpeg" width="100">
-        
-      <p>❤️ ${item}</p>
-
-      <button onclick="moveToCart('${item}')">🛒 Add to Cart</button>
-      <button onclick="removeWishlist(${index})">❌ Remove</button>
-    </div>
-  `;
-});
-}
-
-// ❌ REMOVE SINGLE ITEM
-function removeWishlist(index) {
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  wishlist.splice(index, 1);
-  localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  loadWishlist();
-}
-
-// 🔄 CLEAR ALL
-function clearWishlist() {
-  localStorage.removeItem("wishlist");
-  loadWishlist();
-}
-
-
-// AUTO LOAD
-loadWishlist();
-</script>
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
 <h1>❤️ మీ Wishlist</h1>
@@ -51,10 +12,8 @@ loadWishlist();
 
 <div id="wishlist-items"></div>
 
-</body>
-
-
 <script>
+
 function loadWishlist() {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   let div = document.getElementById("wishlist-items");
@@ -69,7 +28,10 @@ function loadWishlist() {
   wishlist.forEach((item, index) => {
     div.innerHTML += `
       <div class="cart-box">
-        <p>❤️ ${item}</p>
+        <img src="${item.img}" width="100">
+        <p>❤️ ${item.name}</p>
+
+        <button onclick="moveToCart('${item.name}','${item.img}')">🛒 Add to Cart</button>
         <button onclick="removeWishlist(${index})">❌ Remove</button>
       </div>
     `;
@@ -88,5 +50,24 @@ function clearWishlist() {
   loadWishlist();
 }
 
+function moveToCart(name, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name, price: 250, img, qty: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Cart lo add ayindi");
+}
+
 loadWishlist();
+
 </script>
+
+</body>
+</html>
