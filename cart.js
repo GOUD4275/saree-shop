@@ -34,17 +34,19 @@ cart = cart.map(item => ({
 }));
 
 // ================= ADD TO CART =================
-function addToCart(name, price) {
+function addToCart(name, price, image) {
   let existing = cart.find(item => item.name === name);
 
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ name, price, qty: 1 });
+    cart.push({ name, price, image, qty: 1 }); // ✅ image added
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
   alert(name + " cart లో add అయింది");
+
+  updateCartCount(); // 🔥 update count
 }
 
 // ================= SEARCH PRODUCTS =================
@@ -111,6 +113,22 @@ function loadCart() {
     document.getElementById("total").innerText = "";
     return;
   }
+  cartDiv.innerHTML += `
+  <div class="cart-box">
+    <img src="${item.image}" width="100">
+
+    <p>${item.name} - ₹${item.price}</p>
+
+    <button onclick="decreaseQty(${index})">➖</button>
+    <span>${item.qty}</span>
+    <button onclick="increaseQty(${index})">➕</button>
+
+    <p>Subtotal: ₹${itemTotal}</p>
+
+    <button onclick="removeItem(${index})">❌ Remove</button>
+  </div>
+`;
+
 
   cart.forEach((item, index) => {
     let itemTotal = item.price * item.qty;
