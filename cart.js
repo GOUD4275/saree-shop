@@ -144,9 +144,12 @@ function checkout() {
 }
 
 // ================= INIT =================
+// ================= INIT =================
+document.addEventListener("DOMContentLoaded", function () {
 updateCartCount();
 updateWishlistCount();
 
 if (document.getElementById("cart-items")) {
   loadCart();
 }
+});
