@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>❤️ మీ Wishlist</h1>
+
+<div id="wishlist-items"></div>
+
+<script src="cart.js"></script>
+
+<script>
+function loadWishlist() {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  let div = document.getElementById("wishlist-items");
+
+  if (wishlist.length === 0) {
+    div.innerHTML = "<p>Wishlist ఖాళీగా ఉంది</p>";
+    return;
+  }
+
+  wishlist.forEach(item => {
+    div.innerHTML += `<p>❤️ ${item}</p>`;
+  });
+}
+
+loadWishlist();
+</script>
+
+</body>
+</html>
