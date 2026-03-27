@@ -247,3 +247,125 @@ nav a {
 .payment-box input {
   margin-right: 10px;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 15px;
+}
+
+/* HEADINGS */
+h1 {
+  color: purple;
+}
+
+/* CARD DESIGN */
+.card {
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* TOTAL */
+.total-box {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* BUTTON */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+/* MAIN BUTTON */
+.main-btn {
+  width: 100%;
+  margin-top: 10px;
+  background: green;
+}
+
+/* CLEAR BUTTON */
+.danger-btn {
+  width: 100%;
+  background: red;
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* PAYMENT OPTION */
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+/* UPI BUTTON */
+.upi-btn {
+  display: block;
+  text-align: center;
+  background: purple;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+/* NOTE */
+.note {
+  font-size: 14px;
+  color: green;
+}
+
+/* SMALL TEXT */
+.small-text {
+  font-size: 12px;
+  color: #666;
+}
+
+/* QR IMAGE */
+.qr-img {
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+}
+
+/* CART BOX */
+.cart-box {
+  background: #fafafa;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+}
