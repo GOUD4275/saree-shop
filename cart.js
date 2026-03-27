@@ -47,20 +47,22 @@ function loadCart() {
     let itemTotal = item.price * item.qty;
     total += itemTotal;
 
-    div.innerHTML += `
-      <div class="cart-box">
-        <img src="${item.img}" width="100">
-        <p>${item.name}</p>
-        <p>₹${item.price}</p>
+div.innerHTML += `
+  <div class="cart-box">
+    <img src="${item.img}">
+    <p>${item.name}</p>
+    <p>₹${item.price}</p>
 
-        <button onclick="decreaseQty(${index})">➖</button>
-        <span>${item.qty}</span>
-        <button onclick="increaseQty(${index})">➕</button>
+    <div class="qty-box">
+      <button onclick="decreaseQty(${index})">−</button>
+      <span>${item.qty}</span>
+      <button onclick="increaseQty(${index})">+</button>
+    </div>
 
-        <p>Subtotal: ₹${itemTotal}</p>
+    <p>Subtotal: ₹${itemTotal}</p>
 
-        <button onclick="removeItem(${index})">❌ Remove</button>
-      </div>
+    <button onclick="removeItem(${index})">❌ Remove</button>
+  </div>
     `;
   });
 
