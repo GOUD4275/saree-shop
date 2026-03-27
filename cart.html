@@ -23,15 +23,29 @@
     <span>💵 Cash on Delivery</span>
   </label>
 
-  <label>
-    <input type="radio" name="payment" value="upi">
-    <span>💳 Pay with UPI (PhonePe / GPay)</span>
-  </label>
+  <section>
+  <h2>💳 Pay via UPI</h2>
 
-  <p>💡 UPI ID: <b>gowd2009@ybl</b></p>
-</div>
+  <p>Click below to pay using Google Pay, PhonePe, Paytm.</p>
 
-<button onclick="checkout()">📦 Place Order</button>
+  <a class="btn"
+     href="upi://pay?pa=gowd2009@ybl&pn=Fresh%20Cut%20Fruits&am=&cu=INR">
+     Pay Now
+  </a>
+
+  <p><b>Note:</b> After payment, please send screenshot on WhatsApp.</p>
+
+    <p style="font-size:14px; color:#666; line-height:1.5;">
+    💻 If you are using a laptop or desktop, UPI payment links may not work
+    because Google Pay, PhonePe, and Paytm apps are available only on mobile phones.
+    <br>
+    👉 Please scan the QR code below using your mobile UPI app.
+  </p>
+
+  <img src="images/upi-qr.png"
+       alt="UPI QR Code"
+       style="width:100%; max-width:300px; border-radius:10px;">
+</section>
 
 <hr>
 
@@ -40,6 +54,8 @@
 <input type="text" id="name" placeholder="మీ పేరు"><br><br>
 <input type="text" id="phone" placeholder="ఫోన్ నెంబర్"><br><br>
 <input type="text" id="address" placeholder="అడ్రస్"><br><br>
+
+<button onclick="checkout()">📦 Place Order</button>
 
 <script src="cart.js"></script>
 
