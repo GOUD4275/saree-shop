@@ -122,8 +122,14 @@ function checkout() {
   let phone = document.getElementById("phone").value;
   let address = document.getElementById("address").value;
 
-  // ✅ FIX: get payment
-  let payment = document.querySelector('input[name="payment"]:checked').value;
+  let paymentEl = document.querySelector('input[name="payment"]:checked');
+
+  if (!paymentEl) {
+    alert("Payment method select చేయండి");
+    return;
+  }
+
+  let payment = paymentEl.value;
 
   if (!name || !phone || !address) {
     alert("Details fill చేయండి");
@@ -148,7 +154,6 @@ function checkout() {
   if (payment === "cod") {
 
     msg += "\n\n💵 Payment: Cash on Delivery";
-
     window.open("https://wa.me/919959008593?text=" + encodeURIComponent(msg));
 
   } else {
@@ -156,7 +161,6 @@ function checkout() {
     msg += "\n\n💳 Payment: UPI";
 
     let upiLink = `upi://pay?pa=gowd20092@ibl&pn=KrupaSarees&am=${total}&cu=INR`;
-
     window.location.href = upiLink;
   }
 }
@@ -164,10 +168,10 @@ function checkout() {
 // ================= INIT =================
 
 document.addEventListener("DOMContentLoaded", function () {
-updateCartCount();
-updateWishlistCount();
+  updateCartCount();
+  updateWishlistCount();
 
-if (document.getElementById("cart-items")) {
-  loadCart();
-}
+  if (document.getElementById("cart-items")) {
+    loadCart();
+  }
 });
