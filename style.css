@@ -119,11 +119,17 @@ nav a {
 
 /* CART BOX */
 .cart-box {
-  background: white;
+  background: #fff;
   padding: 10px;
-  margin: 10px;
   border-radius: 10px;
+  text-align: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cart-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 /* ✅ IMAGE FIX (VERY IMPORTANT 🔥) */
@@ -385,4 +391,24 @@ body::after {
   content: "";
   display: block;
   height: 40px;
+}
+
+#cart-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 10px;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  #cart-items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  #cart-items {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
