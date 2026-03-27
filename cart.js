@@ -26,8 +26,6 @@ function addToWishlist(name, img) {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
     updateWishlistCount();
     alert(name + " wishlist lo add ayindi ❤️");
-  } else {
-    alert("Already wishlist lo undi");
   }
 }
 
@@ -122,19 +120,12 @@ function checkout() {
   let phone = document.getElementById("phone").value;
   let address = document.getElementById("address").value;
 
-  let paymentEl = document.querySelector('input[name="payment"]:checked');
-
-  if (!paymentEl) {
-    alert("Payment method select చేయండి");
-    return;
-  }
-
-  let payment = paymentEl.value;
-
   if (!name || !phone || !address) {
     alert("Details fill చేయండి");
     return;
   }
+
+  let payment = document.querySelector('input[name="payment"]:checked').value;
 
   let msg = "🛍️ Order Details:\n\n";
   let total = 0;
@@ -154,19 +145,27 @@ function checkout() {
   if (payment === "cod") {
 
     msg += "\n\n💵 Payment: Cash on Delivery";
+
     window.open("https://wa.me/919959008593?text=" + encodeURIComponent(msg));
 
   } else {
 
     msg += "\n\n💳 Payment: UPI";
+    msg += "\n👉 Pay to: gowd20092@ybl";
 
-    let upiLink = `upi://pay?pa=gowd2009@ybl&pn=KrupaSarees&am=${total}&cu=INR`;
-    window.location.href = upiLink;
+    // 🔥 OPEN WHATSAPP (100% WORKING)
+    window.open("https://wa.me/919959008593?text=" + encodeURIComponent(msg));
+
+    // 🔥 TRY DIRECT UPI ALSO
+    let upiLink = `upi://pay?pa=gowd20092@ybl&pn=KrupaSarees&am=${total}&cu=INR`;
+
+    setTimeout(() => {
+      window.location.href = upiLink;
+    }, 1000);
   }
 }
 
 // ================= INIT =================
-
 document.addEventListener("DOMContentLoaded", function () {
   updateCartCount();
   updateWishlistCount();

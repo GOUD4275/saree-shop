@@ -227,7 +227,6 @@ nav a {
   gap: 5px;
 }
 
-/* PAYMENT BOX */
 .payment-box {
   background: white;
   padding: 20px;
@@ -236,7 +235,6 @@ nav a {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* RADIO STYLE */
 .payment-box label {
   display: block;
   padding: 10px;
@@ -244,15 +242,8 @@ nav a {
   border: 2px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
 }
 
 .payment-box input {
   margin-right: 10px;
-}
-
-/* SELECTED EFFECT */
-.payment-box input:checked + span {
-  color: purple;
-  font-weight: bold;
 }
