@@ -160,7 +160,7 @@ function checkout() {
 
     msg += "\n\n💳 Payment: UPI";
 
-    let upiLink = `upi://pay?pa=gowd20092@ibl&pn=KrupaSarees&am=${total}&cu=INR`;
+    let upiLink = `upi://pay?pa=gowd2009@ybl&pn=KrupaSarees&am=${total}&cu=INR`;
     window.location.href = upiLink;
   }
 }
