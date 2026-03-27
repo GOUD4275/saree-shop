@@ -369,3 +369,20 @@ input {
     font-size: 20px;
   }
 }
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 15px;
+  padding-bottom: 80px; /* 🔥 THIS FIXES DEAD END */
+}
+
+body {
+  padding-bottom: 60px;
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: 40px;
+}
