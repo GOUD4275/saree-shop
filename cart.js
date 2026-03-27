@@ -140,7 +140,21 @@ function checkout() {
   msg += "\n📞 " + phone;
   msg += "\n🏠 " + address;
 
+    // ================= PAYMENT =================
+  if (payment === "cod") {
+
+    message += "\n\n💵 Payment: Cash on Delivery";
+
   window.open("https://wa.me/919959008593?text=" + encodeURIComponent(msg));
+} else {
+
+    message += "\n\n💳 Payment: UPI";
+
+    // 🔥 👉 YOUR UPI ID HERE
+    let upiLink = `upi://pay?pa=gowd20092@ibl&pn=KrupaSarees&am=${total}&cu=INR`;
+
+    window.location.href = upiLink;
+  }
 }
 
 // ================= INIT =================
