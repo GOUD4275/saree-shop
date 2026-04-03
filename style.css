@@ -440,3 +440,21 @@ body::after {
   object-fit: contain;   /* 🔥 FULL IMAGE */
   border-radius: 8px;
 }
+
+/* WISHLIST IMAGE FIX */
+.cart-box img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;          /* 🔥 IMPORTANT */
+  object-fit: contain;   /* 🔥 FULL IMAGE */
+  border-radius: 8px;
+}
+
+.cart-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+
+
