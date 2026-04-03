@@ -430,3 +430,13 @@ body::after {
   background: purple;
   color: white;
 }
+
+
+/* WISHLIST IMAGE FIX */
+.cart-box img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;          /* 🔥 IMPORTANT */
+  object-fit: contain;   /* 🔥 FULL IMAGE */
+  border-radius: 8px;
+}
