@@ -18,15 +18,39 @@
 
   <button onclick="clearCart()" class="danger-btn">🗑️ Clear Cart</button>
 
-  <!-- PAYMENT -->
-  <div class="card">
-    <h3>💳 Payment Method</h3>
+<!-- PAYMENT -->
+<div class="card">
+  <h3>💳 Payment Method</h3>
 
+  <div class="payment-container">
+
+    <!-- COD Option -->
     <label class="payment-option">
       <input type="radio" name="payment" value="cod" checked>
-      <span>💵 Cash on Delivery</span>
+      <div class="option-content">
+        <span class="icon">💵</span>
+        <div>
+          <strong>Cash on Delivery</strong><br>
+          <small>Pay when product is delivered</small>
+        </div>
+      </div>
     </label>
+
+    <!-- UPI Option -->
+    <label class="payment-option">
+      <input type="radio" name="payment" value="upi">
+      <div class="option-content">
+        <span class="icon">📱</span>
+        <div>
+          <strong>UPI Payment</strong><br>
+          <small>Pay using PhonePe / GPay / UPI</small>
+        </div>
+      </div>
+    </label>
+
   </div>
+</div>
+
 
   <!-- UPI SECTION -->
   <div class="card upi-box">
@@ -67,3 +91,5 @@
 
 </body>
 </html>
+
+
